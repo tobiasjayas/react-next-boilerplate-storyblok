@@ -1,5 +1,6 @@
 {
   "name": "react-next-storyblok-boilerplate",
+  "homepage": "home",
   "version": "1.0.0",
   "description": "Next.js Storyblok Boilerplate",
   "main": "index.js",
