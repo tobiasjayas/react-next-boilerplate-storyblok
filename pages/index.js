@@ -1,14 +1,14 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
 import {
   useStoryblokState,
   getStoryblokApi,
   StoryblokComponent,
-} from "@storyblok/react";
+} from '@storyblok/react'
 
 export default function Home({ story }) {
-  story = useStoryblokState(story);
+  story = useStoryblokState(story)
 
   return (
     <div className={styles.container}>
@@ -18,23 +18,33 @@ export default function Home({ story }) {
       </Head>
 
       <header>
-        <h1>{story ? story.name : "My Site"}</h1>
+        <h1 >{story ? story.name : 'My Site'}</h1>
       </header>
-
-      <StoryblokComponent blok={story.content} />
+      <h2>{story.content.body[0].headline}</h2>
+      <ul>
+        {story.content.body[1].columns && story.content.body[1].columns.map((feat, index) => (
+          <li key={index}>{feat.name}</li>
+        ))}
+      </ul>
+      <div className={styles.flex}>
+        <img alt="" src={story.content.image.filename} />
+        <video width="400" controls>
+          <source src={story.content.video.filename} type="video/mp4" />
+        </video>
+      </div>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  let slug = "home";
+  let slug = 'home'
 
   let sbParams = {
-    version: "draft", // or 'published'
-  };
+    version: 'draft', // or 'published'
+  }
 
-  const storyblokApi = getStoryblokApi();
-  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
+  const storyblokApi = getStoryblokApi()
+  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams)
 
   return {
     props: {
@@ -42,5 +52,5 @@ export async function getStaticProps() {
       key: data ? data.story.id : false,
     },
     revalidate: 3600,
-  };
+  }
 }
