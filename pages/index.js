@@ -29,9 +29,10 @@ export default function Home({ story }) {
       </ul> */}
       <div className={styles.flex}>
         <img alt="" src={story.content.image.filename} />
-        <video width="400" controls>
+        {/* <video width="400" controls>
           <source src={story.content.video.filename} type="video/mp4" />
-        </video>
+        </video> */}
+        <div className="product-des" dangerouslySetInnerHTML={{ __html: story.content.body[0].link_embed }}></div>
       </div>
     </div>
   )
