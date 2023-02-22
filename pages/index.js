@@ -36,7 +36,7 @@ export default function Home({ story }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let slug = 'home'
 
   let sbParams = {
@@ -50,7 +50,6 @@ export async function getStaticProps() {
     props: {
       story: data ? data.story : false,
       key: data ? data.story.id : false,
-    },
-    revalidate: 3600,
+    }
   }
 }
