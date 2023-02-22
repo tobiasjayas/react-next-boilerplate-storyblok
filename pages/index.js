@@ -21,11 +21,12 @@ export default function Home({ story }) {
         <h1 >{story ? story.name : 'My Site'}</h1>
       </header>
       <h2>{story.content.body[0].headline}</h2>
-      <ul>
+      <p>{story.content.body[0].description}</p>
+      {/* <ul>
         {story.content.body[1].columns && story.content.body[1].columns.map((feat, index) => (
           <li key={index}>{feat.name}</li>
         ))}
-      </ul>
+      </ul> */}
       <div className={styles.flex}>
         <img alt="" src={story.content.image.filename} />
         <video width="400" controls>
